@@ -17,3 +17,16 @@ The final product will work as follows:
 ** NOTE **
 In case the user asks: "What objects are around me?" The camera will scan the room.
 We will be using a motor to make spin 360 degrees. Therefore we will meet the movement requirements from the marking sheet.
+
+** HARDWARE REQUIREMENTS **
+- RaspberryPi
+- Camera
+- Motor ( to move the camera )
+- Microphone
+- Push button (maybe for press to record request )
+
+** SOFTWARE REQUIREMENTS ** 
+- Python 3.0 or higher
+- OpenCV
+- Speech_recognition
+- Object Detection 
