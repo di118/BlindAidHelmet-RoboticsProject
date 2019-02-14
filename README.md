@@ -1,4 +1,4 @@
-s from the marking sheet.BlindAidHelmet-RoboticsProject
+BlindAidHelmet-RoboticsProject
 A robot that can recognise objects in a room and specify their location ( maybe in angles)
 This project aims to create a device that allows users with vision difficulties to find objects in the room.
 
@@ -16,4 +16,4 @@ The final product will work as follows:
 
 ** NOTE **
 In case the user asks: "What objects are around me?" The camera will scan the room.
-We will be using a motor to make spin 360 degrees. Therefore we will meet the movement requirement
+We will be using a motor to make spin 360 degrees. Therefore we will meet the movement requirements from the marking sheet.
