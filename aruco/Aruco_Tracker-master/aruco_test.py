@@ -75,11 +75,13 @@ while (True):
         for i in range(0, ids.size):
             if ids[i] == 2:
                 strg += 'glasses, '
+                print("glasses")
             elif ids[i] == 1:
                 strg += 'lamp, '
+                print("lamp")
             elif ids[i] == 3:
                 strg += 'calender, '
-
+                print("calendar")
             else:
                 strg += str(ids[i][0])+', '
 
