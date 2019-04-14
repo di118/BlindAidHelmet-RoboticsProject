@@ -3,7 +3,8 @@ import cv2
 import cv2.aruco as aruco
 import glob
 
-cap = cv2.VideoCapture(-1)
+cap = cv2.imread("imageTest.jpg")
+
 
 # termination criteria
 criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)
@@ -40,7 +41,7 @@ ret, mtx, dist, rvecs, tvecs = cv2.calibrateCamera(objpoints, imgpoints, gray.sh
 
 
 while (True):
-    ret, frame = cv2.imread("imageTest.jpg")
+    ret, frame = cap.read()
     # operations on the frame come here
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     aruco_dict = aruco.Dictionary_get(aruco.DICT_6X6_250)
