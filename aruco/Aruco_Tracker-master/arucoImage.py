@@ -41,7 +41,7 @@ ret, mtx, dist, rvecs, tvecs = cv2.calibrateCamera(objpoints, imgpoints, gray.sh
 
 
 while (True):
-    ret, frame = cap.read()
+    ret, frame =  cv2.imread('imageTest.jpg')
     # operations on the frame come here
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     aruco_dict = aruco.Dictionary_get(aruco.DICT_6X6_250)
