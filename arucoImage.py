@@ -3,7 +3,7 @@ import cv2
 import cv2.aruco as aruco
 import glob
 
-cap = cv2.imread("imageTest.jpg")
+cap = cv2.imread('imageTest.jpg')
 
 
 # termination criteria
