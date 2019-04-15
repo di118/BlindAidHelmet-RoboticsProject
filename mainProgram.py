@@ -129,10 +129,10 @@ def takePictures():
     camera.capture('/home/pi/image3.jpg')
     camera.stop_preview()
 
-# takePictures()
-leftImage = ('images/image1.jpg')
-midImage = ('images/image2.jpg')
-rightImage = ('images/image3.jpg')
+takePictures()
+leftImage = ('/home/pi/image1.jpg')
+midImage = ('/home/pi/image2.jpg')
+rightImage = ('/home/pi/image3.jpg')
 
 objects = []
 def analyseImages(targetImage):
@@ -224,6 +224,8 @@ def analyseImages(targetImage):
         print("No id's found")
 
 print("Image 1: ")
+analyseImages(leftImage)
+analyseImages(midImage)
 analyseImages(rightImage)
 print("Objects: ", objects)
 
@@ -235,6 +237,7 @@ def getObjLocation(target1):
         print("ob", objects[i][0])
         if(objects[i][0] == target1):
 
-            print("Object found at: ", objects[i][1], objects[i][2])
+                if(objects[i][1] < 200):
+                    print("The object you are looking for is  ", objects[i][1], objects[i][2])
 
 getObjLocation(targetObjectID)
