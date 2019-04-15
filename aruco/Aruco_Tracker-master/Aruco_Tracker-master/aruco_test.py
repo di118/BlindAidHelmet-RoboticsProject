@@ -84,10 +84,15 @@ while j < 4:
         for i in range(0, ids.size):
             if ids[i] == 2:
                 strg += 'glasses, '
+                print("glasses")
             elif ids[i] == 1:
                 strg += 'lamp, '
+                print("lamp")
+
             elif ids[i] == 3:
                 strg += 'calender, '
+                print("calender")
+
 
             else:
                 strg += str(ids[i][0])+', '
@@ -96,13 +101,13 @@ while j < 4:
 
 
 
-        cv2.putText(frame, ("Id: " + strg + "(" + x + "," + y + ")" ), (0,64), font, 1, (0,255,0),2,cv2.LINE_AA)
+        # cv2.putText(frame, ("Id: " + strg + "(" + x + "," + y + ")" ), (0,64), font, 1, (0,255,0),2,cv2.LINE_AA)
 
 
     else:
         ##### DRAW "NO IDS" #####
-        cv2.putText(frame, "No Ids", (0,64), font, 1, (0,255,0),2,cv2.LINE_AA)
-
+        # cv2.putText(frame, "No Ids", (0,64), font, 1, (0,255,0),2,cv2.LINE_AA)
+        print("No id's found")
     # Display the resulting frame
     if cv2.waitKey(1) & 0xFF == ord('n'):
         if j == 3:
@@ -117,5 +122,5 @@ while j < 4:
 
 
 # When everything done, release the capture
-cap.release()
+
 cv2.destroyAllWindows()
