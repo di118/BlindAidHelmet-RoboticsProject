@@ -80,6 +80,8 @@ def getText():
     elif targetObject == "calendar":
         global targetObjectID
         targetObjectID = 3
+    GPIO.cleanup()
+
 
 getText()
 
