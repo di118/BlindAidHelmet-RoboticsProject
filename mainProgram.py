@@ -6,6 +6,10 @@ from gpiozero import Servo
 from time import sleep
 from picamera import PiCamera
 from time import sleep
+import numpy as np
+import cv2
+import cv2.aruco as aruco
+import glob
 
 
 def getText():
@@ -115,5 +119,93 @@ def takePictures():
     camera.capture('/home/pi/image3.jpg')
     camera.stop_preview()
 
-
 takePictures()
+leftImage = glob.glob('image1.jpg')
+midImage = glob.glob('image2.jpg')
+rightImage = glob.glob('image3.jpg')
+def analyseImages(targetImage):
+
+    # termination criteria
+    criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)
+
+    # prepare object points, like (0,0,0), (1,0,0), (2,0,0) ....,(6,5,0)
+    objp = np.zeros((6 * 7, 3), np.float32)
+    objp[:, :2] = np.mgrid[0:7, 0:6].T.reshape(-1, 2)
+
+    # Arrays to store object points and image points from all the images.
+    objpoints = []  # 3d point in real world space
+    imgpoints = []  # 2d points in image plane.
+
+    images = glob.glob('calib_images/*.jpg')
+    images2 = glob.glob('images/image*.jpg')
+
+    for fname in images:
+        img = cv2.imread(fname)
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+        # Find the chess board corners
+        ret, corners = cv2.findChessboardCorners(gray, (7, 6), None)
+
+        # If found, add object points, image points (after refining them)
+        if ret == True:
+            objpoints.append(objp)
+
+            corners2 = cv2.cornerSubPix(gray, corners, (11, 11), (-1, -1), criteria)
+            imgpoints.append(corners2)
+
+            # Draw and display the corners
+            img = cv2.drawChessboardCorners(img, (7, 6), corners2, ret)
+
+    ret, mtx, dist, rvecs, tvecs = cv2.calibrateCamera(objpoints, imgpoints, gray.shape[::-1], None, None)
+
+    image3 = targetImage
+
+    frame = cv2.imread(image3)
+    # operations on the frame come here
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    aruco_dict = aruco.Dictionary_get(aruco.DICT_6X6_250)
+    parameters = aruco.DetectorParameters_create()
+
+    # lists of ids and the corners beloning to each id
+    corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, aruco_dict, parameters=parameters)
+
+
+    if np.all(ids is not None):
+
+        rvec, tvec, _ = aruco.estimatePoseSingleMarkers(corners, 0.05, mtx,
+                                                        dist)  # Estimate pose of each marker and return the values rvet and tvec---different from camera coefficients
+        # (rvec-tvec).any() # get rid of that nasty numpy value array error
+
+        for i in range(0, ids.size):
+            # aruco.drawAxis(frame, mtx, dist, rvec[i], tvec[i], 0.1)  # Draw Axis
+            x = str(int(
+                (corners[i - 1][0][0][0] + corners[i - 1][0][1][0] + corners[i - 1][0][2][0] + corners[i - 1][0][3][
+                    0]) / 4))
+            y = str(int(
+                (corners[i - 1][0][0][1] + corners[i - 1][0][1][1] + corners[i - 1][0][2][1] + corners[i - 1][0][3][
+                    1]) / 4))
+        rotM = np.zeros(shape=(3, 3))
+        angle = str(cv2.Rodrigues(rvec[i - 1], rotM, jacobian=0))
+        # aruco.drawDetectedMarkers(frame, corners) #Draw A square around the markers
+
+        ###### DRAW ID #####
+        strg = ''
+        for i in range(0, ids.size):
+            if ids[i] == 2:
+                strg += 'glasses, '
+                print("glasses")
+            elif ids[i] == 1:
+                strg += 'lamp, '
+                print("lamp")
+
+            elif ids[i] == 3:
+                strg += 'calender, '
+                print("calender")
+            else:
+                strg += str(ids[i][0]) + ', '
+
+    else:
+        ##### DRAW "NO IDS" #####
+        print("No id's found")
+
+analyseImages(rightImage)
