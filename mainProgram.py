@@ -134,9 +134,8 @@ leftImage = ('images/image1.jpg')
 midImage = ('images/image2.jpg')
 rightImage = ('images/image3.jpg')
 
-
+objects = []
 def analyseImages(targetImage):
-    global objects
     # termination criteria
     criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)
 
