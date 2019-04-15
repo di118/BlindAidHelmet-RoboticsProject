@@ -137,8 +137,9 @@ leftImage = ('/home/pi/image1.jpg')
 midImage = ('/home/pi/image2.jpg')
 rightImage = ('/home/pi/image3.jpg')
 
-objects = []
+
 def analyseImages(targetImage):
+    objects = []
     # termination criteria
     criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)
 
@@ -222,40 +223,36 @@ def analyseImages(targetImage):
         #         print("calender")
         #     else:
         #         strg += str(ids[i][0]) + ', '
+
     else:
         ##### DRAW "NO IDS" #####
         print("No id's found")
-
-print("Image 1: ")
-
-print("Objects: ", objects)
+    return objects
 
 
-def getObjLocation(target1):
+
+
+def getObjLocation(target1, position):
     print(target1)
+    imageObj = analyseImages(position)
+    for i in range(0, len(imageObj)):
+        print("ob", imageObj[i][0])
+        if(imageObj[i][0] == target1):
 
-    for i in range(0, len(objects)):
-        print("ob", objects[i][0])
-        if(objects[i][0] == target1):
+                    return [imageObj[i][1], imageObj[i][2]]
 
-                    return [objects[i][1], objects[i][2]]
-analyseImages(leftImage)
-
-analyseImages(midImage)
-analyseImages(rightImage)
-getObjLocation(targetObjectID)
 
 def runAll():
     analyseImages(leftImage)
-    if getObjLocation(targetObjectID) is not None :
+    if getObjLocation(targetObjectID, leftImage) is not None :
         print("your object is on the left")
         sys.exit('object found ')
     analyseImages(midImage)
-    if getObjLocation(targetObjectID) is not None :
+    if getObjLocation(targetObjectID, midImage) is not None :
         print("your object is in the middle")
         sys.exit('object found ')
     analyseImages(rightImage)
-    if getObjLocation(targetObjectID) is not None :
+    if getObjLocation(targetObjectID, rightImage) is not None :
         print("your object on the right")
         sys.exit('object found ')
 
