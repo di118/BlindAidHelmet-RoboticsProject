@@ -11,7 +11,7 @@ import cv2
 import cv2.aruco as aruco
 import glob
 
-
+targetObject = 0
 def getText():
     '''
     This function records for 5 seconds after the pushbutton is pressed. The recorded file is then converted into text.
@@ -67,8 +67,17 @@ def getText():
 
     # r.recognize_google(audio)
     print("You just said: ", r.recognize_google(audio))
-
-
+    fullText = r.recognize_google(audio)
+    fullTextList = fullText.split()
+    targetObject = fullTextList[len(fullTextList) - 1]
+    print("Target object: ", targetObject)
+    if(targetObject == "glasses"):
+        targetObject = 2
+    elif targetObject == "lamp":
+        targetObject = 1
+    elif targetObject == "calendar":
+        targetObject = 3
+getText()
 
 def takePictures():
     '''
@@ -222,3 +231,10 @@ print("Image 3: ")
 analyseImages(rightImage)
 print("Objects: ", objects)
 
+
+def getObjLocation(target1):
+    for i in objects:
+        if(objects[i][0] == target1):
+            print("Object found at: ",objects[i][1],objects[i][2])
+
+getObjLocation(targetObject)
