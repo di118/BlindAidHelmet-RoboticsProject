@@ -226,9 +226,7 @@ def analyseImages(targetImage):
         print("No id's found")
 
 print("Image 1: ")
-analyseImages(leftImage)
-analyseImages(midImage)
-analyseImages(rightImage)
+
 print("Objects: ", objects)
 
 
@@ -239,7 +237,23 @@ def getObjLocation(target1):
         print("ob", objects[i][0])
         if(objects[i][0] == target1):
 
-                if(objects[i][1] < 200):
-                    print("The object you are looking for is  ", objects[i][1], objects[i][2])
+                    return [objects[i][1], objects[i][2]]
+analyseImages(leftImage)
 
+analyseImages(midImage)
+analyseImages(rightImage)
 getObjLocation(targetObjectID)
+
+def runAll():
+    analyseImages(leftImage)
+    if getObjLocation(targetObjectID) is not None :
+        print("your object is on the left")
+        pass
+    analyseImages(midImage)
+    if getObjLocation(targetObjectID) is not None :
+        print("your object is in the middle")
+        pass
+    analyseImages(rightImage)
+    if getObjLocation(targetObjectID) is not None :
+        print("your object on the right")
+        pass
