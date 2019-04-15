@@ -2,7 +2,7 @@
 # run python speechText.py
 
 import speech_recognition as sr
-audioFile = sr.AudioFile('output.wav')
+audioFile = sr.AudioFile('tvSpeech.wav')
 r = sr.Recognizer()
 with audioFile as source:
     audio = r.record(source)
