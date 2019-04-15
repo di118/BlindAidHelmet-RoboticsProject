@@ -257,3 +257,5 @@ def runAll():
     if getObjLocation(targetObjectID) is not None :
         print("your object on the right")
         pass
+
+runAll()
