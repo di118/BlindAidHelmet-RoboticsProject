@@ -208,6 +208,9 @@ def analyseImages(targetImage):
         ##### DRAW "NO IDS" #####
         print("No id's found")
 
-analyseImages(rightImage)
+print("Image 1: ")
 analyseImages(leftImage)
+print("Image 2: ")
 analyseImages(midImage)
+print("Image 3: ")
+analyseImages(rightImage)
