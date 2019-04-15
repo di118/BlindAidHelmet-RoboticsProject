@@ -72,11 +72,14 @@ def getText():
     targetObject = fullTextList[len(fullTextList) - 1]
     print("Target object: ", targetObject)
     if(targetObject == "glasses"):
-        targetObject = 2
+        global targetObjectID
+        targetObjectID = 2
     elif targetObject == "lamp":
-        targetObject = 1
+        global targetObjectID
+        targetObjectID = 1
     elif targetObject == "calendar":
-        targetObject = 3
+        global targetObjectID
+        targetObjectID = 3
 
 getText()
 
@@ -242,4 +245,4 @@ def getObjLocation(target1):
         if(objects[i][0] == target1):
             print("Object found at: ",objects[i][1],objects[i][2])
 
-getObjLocation(targetObject)
+getObjLocation(targetObjectID)
