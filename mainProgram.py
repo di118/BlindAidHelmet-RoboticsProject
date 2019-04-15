@@ -226,7 +226,7 @@ def analyseImages(targetImage):
         print("No id's found")
 
 print("Image 1: ")
-analyseImages(midImage)
+analyseImages(rightImage)
 print("Objects: ", objects)
 
 
