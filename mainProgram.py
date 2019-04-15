@@ -186,7 +186,7 @@ def analyseImages(targetImage):
                 (corners[i - 1][0][0][1] + corners[i - 1][0][1][1] + corners[i - 1][0][2][1] + corners[i - 1][0][3][
                     1]) / 4))
             print("Y coordinates: ", y)
-            objectArr = ["id:",ids[i][0],"x:", x,"y:",y]
+            objectArr = [ids[i][0], x, y]
             objects.append(objectArr)
         rotM = np.zeros(shape=(3, 3))
         angle = str(cv2.Rodrigues(rvec[i - 1], rotM, jacobian=0))
@@ -194,29 +194,30 @@ def analyseImages(targetImage):
         # aruco.drawDetectedMarkers(frame, corners) #Draw A square around the markers
 
         ###### DRAW ID #####
-        strg = ''
-        for i in range(0, ids.size):
-            if ids[i] == 2:
-                strg += 'glasses, '
-                print("glasses")
-            elif ids[i] == 1:
-                strg += 'lamp, '
-                print("lamp")
-
-            elif ids[i] == 3:
-                strg += 'calender, '
-                print("calender")
-            else:
-                strg += str(ids[i][0]) + ', '
-
+        # strg = ''
+        # for i in range(0, ids.size):
+        #     if ids[i] == 2:
+        #         strg += 'glasses, '
+        #         print("glasses")
+        #     elif ids[i] == 1:
+        #         strg += 'lamp, '
+        #         print("lamp")
+        #
+        #     elif ids[i] == 3:
+        #         strg += 'calender, '
+        #         print("calender")
+        #     else:
+        #         strg += str(ids[i][0]) + ', '
     else:
         ##### DRAW "NO IDS" #####
         print("No id's found")
 
 print("Image 1: ")
 analyseImages(leftImage)
+print("Objects: ", objects)
 print("Image 2: ")
 analyseImages(midImage)
+print("Objects: ", objects)
 print("Image 3: ")
 analyseImages(rightImage)
 print("Objects: ", objects)
