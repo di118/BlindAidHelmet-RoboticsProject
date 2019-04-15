@@ -181,9 +181,11 @@ def analyseImages(targetImage):
             x = str(int(
                 (corners[i - 1][0][0][0] + corners[i - 1][0][1][0] + corners[i - 1][0][2][0] + corners[i - 1][0][3][
                     0]) / 4))
+            print("X coordinates: ", x)
             y = str(int(
                 (corners[i - 1][0][0][1] + corners[i - 1][0][1][1] + corners[i - 1][0][2][1] + corners[i - 1][0][3][
                     1]) / 4))
+            print("Y coordinates: ", y)
         rotM = np.zeros(shape=(3, 3))
         angle = str(cv2.Rodrigues(rvec[i - 1], rotM, jacobian=0))
         # aruco.drawDetectedMarkers(frame, corners) #Draw A square around the markers
