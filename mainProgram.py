@@ -235,11 +235,11 @@ print("Objects: ", objects)
 
 def getObjLocation(target1):
 
-    for i in objects:
+    for i in range(0, objects.size):
         print("Target object: ", target1)
         print("itteration: ", objects[i][0])
 
-        if(objects[i][0] == str(target1)):
+        if(objects[i][0] == target1):
             print("Object found at: ",objects[i][1],objects[i][2])
 
 getObjLocation(targetObject)
