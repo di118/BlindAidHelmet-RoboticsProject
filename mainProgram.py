@@ -235,7 +235,7 @@ print("Objects: ", objects)
 
 def getObjLocation(target1):
 
-    for i in range(0, objects.size):
+    for i in range(0, len(objects)):
         print("Target object: ", target1)
         print("itteration: ", objects[i][0])
 
