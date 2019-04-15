@@ -186,7 +186,7 @@ def analyseImages(targetImage):
                 (corners[i - 1][0][0][1] + corners[i - 1][0][1][1] + corners[i - 1][0][2][1] + corners[i - 1][0][3][
                     1]) / 4))
             print("Y coordinates: ", y)
-            objectArr = [ids[i], x,y]
+            objectArr = [ids[i][0], x,y]
             objects.append(objectArr)
         rotM = np.zeros(shape=(3, 3))
         angle = str(cv2.Rodrigues(rvec[i - 1], rotM, jacobian=0))
@@ -220,3 +220,4 @@ analyseImages(midImage)
 print("Image 3: ")
 analyseImages(rightImage)
 print("Objects: ", objects)
+
