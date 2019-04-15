@@ -68,10 +68,7 @@ def getText():
     # r.recognize_google(audio)
     print("You just said: ", r.recognize_google(audio))
 
-def snapshot(n):
 
-    camera.capture('/home/pi/image.jpg')
-    camera.stop_preview()
 
 def takePictures():
     '''
@@ -123,6 +120,9 @@ def takePictures():
 leftImage = ('images/image1.jpg')
 midImage = ('images/image2.jpg')
 rightImage = ('images/image3.jpg')
+
+objects = []
+
 def analyseImages(targetImage):
 
     # termination criteria
@@ -186,8 +186,11 @@ def analyseImages(targetImage):
                 (corners[i - 1][0][0][1] + corners[i - 1][0][1][1] + corners[i - 1][0][2][1] + corners[i - 1][0][3][
                     1]) / 4))
             print("Y coordinates: ", y)
+            objectArr = [ids[i], x,y]
+            objects.append(objectArr)
         rotM = np.zeros(shape=(3, 3))
         angle = str(cv2.Rodrigues(rvec[i - 1], rotM, jacobian=0))
+
         # aruco.drawDetectedMarkers(frame, corners) #Draw A square around the markers
 
         ###### DRAW ID #####
@@ -216,3 +219,4 @@ print("Image 2: ")
 analyseImages(midImage)
 print("Image 3: ")
 analyseImages(rightImage)
+print("Objects: ", objects)
