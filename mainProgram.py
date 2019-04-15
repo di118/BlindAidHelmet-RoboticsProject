@@ -120,9 +120,9 @@ def takePictures():
     camera.stop_preview()
 
 takePictures()
-leftImage = glob.glob('image1.jpg')
-midImage = glob.glob('image2.jpg')
-rightImage = glob.glob('image3.jpg')
+leftImage = ('image1.jpg')
+midImage = ('image2.jpg')
+rightImage = ('image3.jpg')
 def analyseImages(targetImage):
 
     # termination criteria
