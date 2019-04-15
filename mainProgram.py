@@ -119,10 +119,10 @@ def takePictures():
     camera.capture('/home/pi/image3.jpg')
     camera.stop_preview()
 
-takePictures()
-leftImage = ('image1.jpg')
-midImage = ('image2.jpg')
-rightImage = ('image3.jpg')
+# takePictures()
+leftImage = ('images/image1.jpg')
+midImage = ('images/image2.jpg')
+rightImage = ('images/image3.jpg')
 def analyseImages(targetImage):
 
     # termination criteria
@@ -209,3 +209,5 @@ def analyseImages(targetImage):
         print("No id's found")
 
 analyseImages(rightImage)
+analyseImages(leftImage)
+analyseImages(midImage)
