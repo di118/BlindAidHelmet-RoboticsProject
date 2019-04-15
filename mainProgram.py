@@ -135,9 +135,8 @@ midImage = ('images/image2.jpg')
 rightImage = ('images/image3.jpg')
 
 
-objects = []
 def analyseImages(targetImage):
-    objects = []
+    global objects
     # termination criteria
     criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)
 
@@ -232,6 +231,7 @@ print("Objects: ", objects)
 
 def getObjLocation(target1):
     print(target1)
+
     for i in range(0, len(objects)):
         print("ob", objects[i][0])
         if(objects[i][0] == target1):
