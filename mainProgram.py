@@ -10,6 +10,7 @@ import numpy as np
 import cv2
 import cv2.aruco as aruco
 import glob
+import sys
 
 targetObject = 0
 def getText():
@@ -248,14 +249,14 @@ def runAll():
     analyseImages(leftImage)
     if getObjLocation(targetObjectID) is not None :
         print("your object is on the left")
-        pass
+        sys.exit('object found ')
     analyseImages(midImage)
     if getObjLocation(targetObjectID) is not None :
         print("your object is in the middle")
-        pass
+        sys.exit('object found ')
     analyseImages(rightImage)
     if getObjLocation(targetObjectID) is not None :
         print("your object on the right")
-        pass
+        sys.exit('object found ')
 
 runAll()
