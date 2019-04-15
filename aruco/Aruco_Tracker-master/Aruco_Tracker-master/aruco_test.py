@@ -62,7 +62,7 @@ while j < 4:
         font = cv2.FONT_HERSHEY_SIMPLEX #font for displaying text (below)
 
 
-    if np.all(ids != None):
+    if np.all(ids is not None):
 
         rvec, tvec ,_ = aruco.estimatePoseSingleMarkers(corners, 0.05, mtx, dist) #Estimate pose of each marker and return the values rvet and tvec---different from camera coefficients
         #(rvec-tvec).any() # get rid of that nasty numpy value array error
@@ -92,18 +92,10 @@ while j < 4:
             elif ids[i] == 3:
                 strg += 'calender, '
                 print("calender")
-
-
             else:
                 strg += str(ids[i][0])+', '
 
-
-
-
-
         # cv2.putText(frame, ("Id: " + strg + "(" + x + "," + y + ")" ), (0,64), font, 1, (0,255,0),2,cv2.LINE_AA)
-
-
     else:
         ##### DRAW "NO IDS" #####
         # cv2.putText(frame, "No Ids", (0,64), font, 1, (0,255,0),2,cv2.LINE_AA)
