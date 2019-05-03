@@ -245,14 +245,18 @@ def getObjLocation(target1, position):
 def runAll():
     analyseImages(leftImage)
     if getObjLocation(targetObjectID, leftImage) is not None :
+        print(getObjLocation(targetObjectID, leftImage))
         print("your object is on the left")
         sys.exit('object found ')
     analyseImages(midImage)
     if getObjLocation(targetObjectID, midImage) is not None :
+        print(getObjLocation(targetObjectID, midImage))
         print("your object is in the middle")
         sys.exit('object found ')
     analyseImages(rightImage)
     if getObjLocation(targetObjectID, rightImage) is not None :
+        print(getObjLocation(targetObjectID, rightImage))
+
         print("your object on the right")
         sys.exit('object found ')
 
