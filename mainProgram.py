@@ -13,7 +13,7 @@ import glob
 import sys
 from time import sleep
 import RPi.GPIO as GPIO
-
+import pyttsx3
 
 
 
@@ -90,15 +90,18 @@ def getText():
     fullTextList = fullText.split()
     targetObject = fullTextList[len(fullTextList) - 1]
     print("Target object: ", targetObject)
-    if(targetObject == "glasses"):
-        global targetObjectID
-        targetObjectID = 2
-    elif targetObject == "lamp":
+    if(targetObject == "fridge"):
         global targetObjectID
         targetObjectID = 1
-    elif targetObject == "calendar":
+    elif targetObject == "sink":
+        global targetObjectID
+        targetObjectID = 2
+    elif targetObject == "sofa":
         global targetObjectID
         targetObjectID = 3
+    elif targetObject == "door":
+        global targetObjectID
+        targetObjectID = 4
     GPIO.cleanup()
 
 
@@ -243,11 +246,13 @@ def getObjLocation(target1, position):
 
 
 def runAll():
+    # engine = pyttsx3.init()
     analyseImages(leftImage)
     if getObjLocation(targetObjectID, leftImage) is not None :
         coordinates = getObjLocation(targetObjectID, leftImage)
         if(int(coordinates[0]) < 213):
             print("your object is 30 degrees to the left")
+            # engine.say("your object is 30 degrees to the left")
             sys.exit('object found ')
         elif (int(coordinates[0]) >= 213 and int(coordinates[0]) <= 416):
             print("your object is 20 degrees to the left")
