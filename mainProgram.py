@@ -205,6 +205,7 @@ def analyseImages(targetImage):
                     1]) / 4))
             # print("Y coordinates: ", y)
             objectArr = [ids[i][0], x, y]
+            print("ID seen:", objectArr)
             objects.append(objectArr)
         rotM = np.zeros(shape=(3, 3))
         angle = str(cv2.Rodrigues(rvec[i - 1], rotM, jacobian=0))
