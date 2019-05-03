@@ -90,16 +90,16 @@ def getText():
     fullTextList = fullText.split()
     targetObject = fullTextList[len(fullTextList) - 1]
     print("Target object: ", targetObject)
-    if(targetObject == "fridge"):
+    if(targetObject == "microwave"):
         global targetObjectID
-        targetObjectID = 1
-    elif targetObject == "sink":
-        global targetObjectID
-        targetObjectID = 2
-    elif targetObject == "sofa":
-        global targetObjectID
-        targetObjectID = 3
+        targetObjectID = 9
     elif targetObject == "door":
+        global targetObjectID
+        targetObjectID = 10
+    elif targetObject == "cupboard":
+        global targetObjectID
+        targetObjectID = 5
+    elif targetObject == "sink":
         global targetObjectID
         targetObjectID = 4
     GPIO.cleanup()
