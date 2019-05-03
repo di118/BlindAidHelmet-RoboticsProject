@@ -18,11 +18,5 @@ def setServoAngle(servo, angle):
 
 
 if __name__ == '__main__':
-    for i in range(30, 160, 15):
-        setServoAngle(pan, i)
-
-    for i in range(150, 30, -15):
-        setServoAngle(pan, i)
-
-    setServoAngle(pan, 100)
+    setServoAngle(pan, 30)
     GPIO.cleanup()
