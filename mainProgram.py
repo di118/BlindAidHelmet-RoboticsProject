@@ -133,9 +133,9 @@ def takePictures():
     camera.stop_preview()
     GPIO.cleanup()
 takePictures()
-leftImage = ('/home/pi/image1.jpg')
-midImage = ('/home/pi/image2.jpg')
-rightImage = ('/home/pi/image3.jpg')
+leftImage = ('/home/pi/V2.0/BlindAidHelmet-RoboticsProject/image1.jpg')
+midImage = ('/home/pi/V2.0/BlindAidHelmet-RoboticsProject/image2.jpg')
+rightImage = ('/home/pi/V2.0/BlindAidHelmet-RoboticsProject/image3.jpg')
 
 
 def analyseImages(targetImage):
