@@ -113,7 +113,7 @@ def takePictures():
     GPIO.setwarnings(False)
     pan = 17
     GPIO.setup(pan, GPIO.OUT)  # gray ==> PAN
-    setServoAngle(pan, 30)
+    setServoAngle(pan, 40)
     sleep(2)
     print("Taking picture here")
     camera = PiCamera()
@@ -121,12 +121,12 @@ def takePictures():
     sleep(2)
     camera.capture('/home/pi/image1.jpg')
     print("Setting servo to middle position")
-    setServoAngle(pan, 60)
+    setServoAngle(pan, 80)
     print("Taking picture here")
     sleep(2)
     camera.capture('/home/pi/image2.jpg')
     print("Setting servo to left position")
-    setServoAngle(pan, 90)
+    setServoAngle(pan, 120)
     sleep(2)
     print("Taking picture here")
     camera.capture('/home/pi/image3.jpg')
