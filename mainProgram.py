@@ -99,7 +99,7 @@ def getText():
     elif targetObject == "cupboard":
         global targetObjectID
         targetObjectID = 5
-    elif targetObject == "sink":
+    elif targetObject == "sync":
         global targetObjectID
         targetObjectID = 4
     GPIO.cleanup()
