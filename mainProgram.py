@@ -14,10 +14,7 @@ import sys
 from time import sleep
 import RPi.GPIO as GPIO
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
-pan = 17
-GPIO.setup(pan, GPIO.OUT)  # gray ==> PAN
+
 
 
 def setServoAngle(servo, angle):
@@ -112,7 +109,10 @@ def takePictures():
     This function takes 3 pictures
     :return: 3 jpg files
     '''
-
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setwarnings(False)
+    pan = 17
+    GPIO.setup(pan, GPIO.OUT)  # gray ==> PAN
     setServoAngle(pan, 30)
     sleep(2)
     print("Taking picture here")
