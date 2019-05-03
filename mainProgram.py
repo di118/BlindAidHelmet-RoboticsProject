@@ -11,6 +11,27 @@ import cv2
 import cv2.aruco as aruco
 import glob
 import sys
+from time import sleep
+import RPi.GPIO as GPIO
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+pan = 17
+GPIO.setup(pan, GPIO.OUT)  # gray ==> PAN
+
+
+def setServoAngle(servo, angle):
+    assert angle >= 30 and angle <= 150
+    pwm = GPIO.PWM(servo, 50)
+    pwm.start(8)
+    dutyCycle = angle / 18. + 3.
+    pwm.ChangeDutyCycle(dutyCycle)
+    sleep(0.3)
+    pwm.stop()
+
+
+
+
 
 targetObject = 0
 def getText():
@@ -92,28 +113,7 @@ def takePictures():
     :return: 3 jpg files
     '''
 
-    myGPIO = 17
-
-    # Min and Max pulse widths converted into milliseconds
-    # To increase range of movement:
-    #   increase maxPW from default of 2.0
-    #   decrease minPW from default of 1.0
-    # Change myCorrection using increments of 0.05 and
-    # check the value works with your servo.
-    myCorrection = 0.45
-    maxPW = (2.0 + myCorrection) / 1200
-    minPW = (1.0 - myCorrection) / 1200
-
-    myServo = Servo(myGPIO, min_pulse_width=minPW, max_pulse_width=maxPW)
-
-    print("Using GPIO17")
-    print("Max pulse width is set to 2.45 ms")
-    print("Min pulse width is set to 0.55 ms")
-    print("Setting servo to default position")
-    myServo.mid()
-    sleep(2)
-    print("Setting servo to right position")
-    myServo.min()
+    setServoAngle(pan, 30)
     sleep(2)
     print("Taking picture here")
     camera = PiCamera()
@@ -121,17 +121,17 @@ def takePictures():
     sleep(2)
     camera.capture('/home/pi/image1.jpg')
     print("Setting servo to middle position")
-    myServo.mid()
+    setServoAngle(pan, 60)
     print("Taking picture here")
     sleep(2)
     camera.capture('/home/pi/image2.jpg')
     print("Setting servo to left position")
-    myServo.max()
+    setServoAngle(pan, 90)
     sleep(2)
     print("Taking picture here")
     camera.capture('/home/pi/image3.jpg')
     camera.stop_preview()
-
+    GPIO.cleanup()
 takePictures()
 leftImage = ('/home/pi/image1.jpg')
 midImage = ('/home/pi/image2.jpg')
