@@ -249,7 +249,7 @@ def runAll():
         if(int(coordinates[0]) < 213):
             print("your object is 30 degrees to the left")
             sys.exit('object found ')
-        elif (int(coordinates[0]) >= 213 and coordinates[0] <= 416):
+        elif (int(coordinates[0]) >= 213 and int(coordinates[0]) <= 416):
             print("your object is 20 degrees to the left")
             sys.exit('object found ')
         else:
@@ -266,7 +266,7 @@ def runAll():
         if (int(coordinates[0]) < 213):
             print("your object is 30 degrees to the right")
             sys.exit('object found ')
-        elif (int(coordinates[0]) >= 213 and coordinates[0] <= 416):
+        elif (int(coordinates[0]) >= 213 and int(coordinates[0]) <= 416):
             print("your object is 20 degrees to the right")
             sys.exit('object found ')
         else:
