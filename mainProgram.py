@@ -93,7 +93,7 @@ def getText():
     if(targetObject == "microwave"):
         global targetObjectID
         targetObjectID = 9
-    elif targetObject == "door":
+    elif targetObject == "coffee":
         global targetObjectID
         targetObjectID = 10
     elif targetObject == "cupboard":
