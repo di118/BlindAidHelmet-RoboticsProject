@@ -245,19 +245,32 @@ def getObjLocation(target1, position):
 def runAll():
     analyseImages(leftImage)
     if getObjLocation(targetObjectID, leftImage) is not None :
-        print(getObjLocation(targetObjectID, leftImage))
-        print("your object is on the left")
-        sys.exit('object found ')
+        coordinates = getObjLocation(targetObjectID, leftImage)
+        if(coordinates[0] < 213):
+            print("your object is 30 degrees to the left")
+            sys.exit('object found ')
+        elif (coordinates[0] >= 213 and coordinates[0] <= 416):
+            print("your object is 20 degrees to the left")
+            sys.exit('object found ')
+        else:
+            print("your object is 10 degrees to the left")
+            sys.exit('object found ')
     analyseImages(midImage)
     if getObjLocation(targetObjectID, midImage) is not None :
-        print(getObjLocation(targetObjectID, midImage))
+        coordinates = getObjLocation(targetObjectID, midImage)
         print("your object is in the middle")
         sys.exit('object found ')
     analyseImages(rightImage)
     if getObjLocation(targetObjectID, rightImage) is not None :
-        print(getObjLocation(targetObjectID, rightImage))
-
-        print("your object on the right")
-        sys.exit('object found ')
+        coordinates = getObjLocation(targetObjectID, rightImage)
+        if (coordinates[0] < 213):
+            print("your object is 30 degrees to the right")
+            sys.exit('object found ')
+        elif (coordinates[0] >= 213 and coordinates[0] <= 416):
+            print("your object is 20 degrees to the right")
+            sys.exit('object found ')
+        else:
+            print("your object is 10 degrees to the right")
+            sys.exit('object found ')
 
 runAll()
