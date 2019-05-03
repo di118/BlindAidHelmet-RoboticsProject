@@ -196,11 +196,11 @@ def analyseImages(targetImage):
             x = str(int(
                 (corners[i - 1][0][0][0] + corners[i - 1][0][1][0] + corners[i - 1][0][2][0] + corners[i - 1][0][3][
                     0]) / 4))
-            print("X coordinates: ", x)
+            # print("X coordinates: ", x)
             y = str(int(
                 (corners[i - 1][0][0][1] + corners[i - 1][0][1][1] + corners[i - 1][0][2][1] + corners[i - 1][0][3][
                     1]) / 4))
-            print("Y coordinates: ", y)
+            # print("Y coordinates: ", y)
             objectArr = [ids[i][0], x, y]
             objects.append(objectArr)
         rotM = np.zeros(shape=(3, 3))
@@ -236,7 +236,7 @@ def getObjLocation(target1, position):
     print(target1)
     imageObj = analyseImages(position)
     for i in range(0, len(imageObj)):
-        print("ob", imageObj[i][0])
+        # print("ob", imageObj[i][0])
         if(imageObj[i][0] == target1):
 
                     return [imageObj[i][1], imageObj[i][2]]
@@ -255,12 +255,7 @@ def runAll():
         else:
             print("your object is 10 degrees to the left")
             sys.exit('object found ')
-    analyseImages(midImage)
-    if getObjLocation(targetObjectID, midImage) is not None :
-        coordinates = getObjLocation(targetObjectID, midImage)
-        print("your object is in the middle")
-        sys.exit('object found ')
-    analyseImages(rightImage)
+    analyseImages(leftImage)
     if getObjLocation(targetObjectID, rightImage) is not None :
         coordinates = getObjLocation(targetObjectID, rightImage)
         if (int(coordinates[0]) < 213):
@@ -272,5 +267,12 @@ def runAll():
         else:
             print("your object is 10 degrees to the right")
             sys.exit('object found ')
+    analyseImages(midImage)
+    if getObjLocation(targetObjectID, midImage) is not None :
+        coordinates = getObjLocation(targetObjectID, midImage)
+        print("your object is in the middle")
+        sys.exit('object found ')
+
+
 
 runAll()
